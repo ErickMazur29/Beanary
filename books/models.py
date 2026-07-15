@@ -11,5 +11,11 @@ class Book(models.Model):
     total_copies = models.PositiveIntegerField(null=True, blank=True)
     resume = models.TextField(null=True, blank=True)
 
+    # Property é usado para transformar este método num atributo do model (um campo)
+    # Aqui é o calculo para as copias disponiveis, sendo as copias totais - as que foram emprestadas
+    @property
+    def copies_available(self):
+        return self.total_copies - self.loans.filter(returned_at__isnull=True).count()
+
     def __str__(self):
         return self.title
