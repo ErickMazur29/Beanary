@@ -13,6 +13,6 @@ class BookSerializer(serializers.ModelSerializer):
         if value > 1000:
             raise serializers.ValidationError("Não é possivel adicionar mais de 1000 cópias de um livro.")
         return value
-    
+
     def get_copies_available(self, obj):
         return obj.copies_available

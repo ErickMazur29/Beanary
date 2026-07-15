@@ -3,6 +3,15 @@ from users.models import Profile
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    can_allow = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Profile
-        fields = '__all__'
+        fields = ['id', 'user', 'phone', 'max_loan_allowed', 'can_allow']
+
+    def get_can_allow(self, obj):
+        return obj.can_allow
+
+    def validate_can_allow(self, value):
+        if value <= 0:
+            raise serializers.ValidationError("Você atingiu o limite de livros para alugar.")

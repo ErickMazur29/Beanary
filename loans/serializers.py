@@ -1,5 +1,4 @@
 from rest_framework import serializers
-from datetime import date, timedelta
 from loans.models import Loan
 
 
@@ -18,7 +17,7 @@ class LoanSerializer(serializers.ModelSerializer):
 
         # conta a partir dos retornos, se estiver vazio, é porque nao houve retorno.
         active_loans = Loan.objects.filter(user=user, returned_at__isnull=True).count()
-        if active_loans >= user.profile.max_loan_allowed:
+        if active_loans >= user.max_loan_allowed:
             raise serializers.ValidationError("Limite de empréstimos atingido.")
-        
+
         return data
