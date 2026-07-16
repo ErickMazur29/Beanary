@@ -12,4 +12,4 @@ class Profile(models.Model):
         return self.max_loan_allowed - self.loans.filter(returned_at__isnull=True).count()
 
     def __str__(self):
-        return f"Perfil de {self.user.username}"
+        return f"Usuario: {self.user.username}"
