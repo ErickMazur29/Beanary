@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.db.models import Count, Avg
 from books.models import Book
-from users.models import Profile
+
 
 class BookSerializer(serializers.ModelSerializer):
     copies_available = serializers.SerializerMethodField(read_only=True)

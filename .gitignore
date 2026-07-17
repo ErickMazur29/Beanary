@@ -1,6 +1,25 @@
-# environrments
+# Ambiente virtual
+venv/
+.venv/
+env/
 
-.venv
-venv
+# Variáveis de ambiente
 .env
-env
+
+# Python
+__pycache__/
+*.pyc
+
+# Banco de dados local (SQLite antigo)
+db.sqlite3
+
+# Arquivos estáticos/mídia (se gerados localmente)
+staticfiles/
+media/
+
+# Editor/IDE
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store
