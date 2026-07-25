@@ -73,7 +73,9 @@ Todos os endpoints estão prefixados por `/api/v1/`.
 | Reviews | `reviews/`, `reviews/<id>/` |
 | Users | `users/`, `users/<id>/` |
 
-A listagem completa de requisições (com exemplos de payload) está disponível na collection do Postman incluída no projeto.
+A listagem completa de requisições (com exemplos de payload) está disponível na collection do Postman incluída no projeto (`beanary_api_postman_collection.json`).
+
+📖 **Documentação interativa:** [documenter.getpostman.com/view/55984976/2sBY4Qtfba](https://documenter.getpostman.com/view/55984976/2sBY4Qtfba)
 
 ## 🧠 Regras de negócio implementadas
 
