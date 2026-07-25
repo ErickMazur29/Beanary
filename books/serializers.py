@@ -18,6 +18,10 @@ class BookSerializer(serializers.ModelSerializer):
     def get_copies_available(self, obj):
         return obj.copies_available
 
+    def validate_copies_available(self, value):
+        if value <= 0:
+            raise serializers.ValidationError("não temos cópias disponiveis para este livro.")
+
 
 class BookListSerializer(serializers.ModelSerializer):
     class Meta:
@@ -91,3 +95,8 @@ class BookGenreSerializer(serializers.ModelSerializer):
         super().__init__(*args, **kwargs)
         from authors.serializers import AuthorBookSerializer
         self.fields['author'] = AuthorBookSerializer(many=True)
+
+class BookSimpleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Book
+        fields = ['title']

@@ -20,3 +20,10 @@ class ProfileSerializer(serializers.ModelSerializer):
         if value <= 0:
             raise serializers.ValidationError("Você atingiu o limite de livros para alugar.")
         return value
+
+# ========= Apenas nested serializers ========= #
+
+class ProfileSimpleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ['user']
