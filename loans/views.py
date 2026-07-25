@@ -2,16 +2,24 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from app.permissions import GlobalDefaultPermission
 from loans.models import Loan
-from loans.serializers import LoanSerializer
+from loans.serializers import LoanSerializer, LoanListSerializer
 
 
 class LoanList(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated, GlobalDefaultPermission)
     queryset = Loan.objects.all()
-    serializer_class = LoanSerializer
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return LoanListSerializer
+        return LoanSerializer
 
 
 class LoanDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticated, GlobalDefaultPermission)
     queryset = Loan.objects.all()
-    serializer_class = LoanSerializer
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return LoanListSerializer
+        return LoanSerializer

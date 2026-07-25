@@ -5,7 +5,7 @@ from loans.models import Loan
 class LoanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Loan
-        fields = ['book', 'user', 'borrowed_at', 'due_date', 'returned_at']
+        fields = '__all__'
         extra_kwargs = {
             'user': {'required': False}
         }
@@ -35,6 +35,11 @@ class LoanSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Limite de empréstimos atingido.")
 
         return data
+
+class LoanListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Loan
+        fields = ['book', 'user', 'borrowed_at','due_date', 'returned_at']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

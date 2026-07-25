@@ -5,7 +5,10 @@ from reviews.models import Review
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = ['book', 'user', 'rate', 'review']
+        fields = '__all__'
+        extra_kwargs = {
+            'user': {'required': False}
+        }
 
     def validate(self, data):
         request = self.context['request']
@@ -21,7 +24,13 @@ class ReviewSerializer(serializers.ModelSerializer):
 
         return data
 
+
+class ReviewListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = ['book', 'user', 'rate', 'review']
+
     def __init__(self, *args, **kwargs):
-            super().__init__(*args, **kwargs)
-            from books.serializers import BookSimpleSerializer
-            self.fields['book'] = BookSimpleSerializer()
+        super().__init__(*args, **kwargs)
+        from books.serializers import BookSimpleSerializer
+        self.fields['book'] = BookSimpleSerializer()
